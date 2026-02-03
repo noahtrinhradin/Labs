@@ -1,0 +1,5 @@
+{
+    "git-autocommit.enable": true,
+  "git-autocommit.push": true,
+  "git-autocommit.commitMessage": "Auto-sync"
+}
