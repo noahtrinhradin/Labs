@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-primary text-white">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Noah's Hotel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Lab01.html">Lab01</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Lab02.html">Lab02</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Lab03.html">Lab03</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Lab04.html">Lab04</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Lab05.html">Lab05</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Lab06.html">Lab06</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Lab07.html">Lab07</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Lab08.html">Lab08</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Lab09.html">Lab09</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Lab10.html">Lab10</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Bootstrap container -->
+<div class="container-md pt-5">
+    <!-- Row 1 -->
+    <div class="row g-5">
+        <!-- Room Price Box -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3>3 Prices for rooms?</h3>
+                    <p id="prices">3 prices are: <span id="priceSpan"></span></p>
+                    <p id="middle">Middle: <span id="middleSpan"></span></p>
+                    <p id="mean">Mean: <span id="meanSpan"></span></p>
+                    <button type="button" id="priceBtn" class="btn btn-success">Calculate</button>
+                </div>
+            </div>
+        </div>
+        <!-- Capacity Box -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Display How Full the Hotel is:</h3>
+                    <form id="hotelForm">
+                        <input type="text" id="capacity">
+                        <p>The Hotel is:</p>
+                        <h2 id="booked"><span id="bookedSpan"></span><span id="bookedSpan2"></span></h2>
+                        <button type="submit" class="btn btn-success mt-2">Calculate</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row 2 -->
+    <div class="row g-5 mt-2">
+        <!-- Iteration Box -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Iteration</h3>
+                    <form id="iterationForm">
+                        <input type="text" id="iterationInput">
+                        <p id="iterationP"></p>
+                        <button type="submit" class="btn btn-success mt-2">Iterate Me</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Race Box -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Who gets there the fastest?</h3>
+                    <form id="raceForm">
+                        <label for="alexaSpeed">Alexa's Speed: </label>
+                        <input type="text" id="alexaSpeed" class="m-2">
+                        <br>
+                        <label for="siriSpeed">Siri's Speed: </label>
+                        <input type="text" id="siriSpeed" class="m-2">
+
+                        <p>Alexa's speed is: <span id="alexaSpan"></span></p>
+                        <p>Siri's speed is: <span id="siriSpan"></span></p>
+                        <p id="race"><span id="raceSpan"></span><span id="raceSpan2"></span></p>
+                        <button type="submit" class="btn btn-success mt-2">Who's Fastest</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="includes/js/Lab02.js"></script>
+</body>
+</html>
