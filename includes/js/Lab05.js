@@ -183,7 +183,7 @@ const createCarousel = (x) => {
         </div>`;
     
         document.getElementById("carouselIndicators").innerHTML +=
-        `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${x-1}" aria-current="true" aria-label="Slide ${x}"></button>`;
+        `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${x-1}" aria-label="Slide ${x}"></button>`;
 
 }
 
