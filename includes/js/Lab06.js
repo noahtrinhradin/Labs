@@ -46,11 +46,35 @@ class Hotel {
     set gyms(gym) {
         this.gym = gym;
     }
+
+    bookRoom = () => {
+        if(this.booked < this.rooms) {
+            hclicked++;
+            this.booked++;
+            btns();
+            document.getElementById("sbooked").innerHTML = `${this.booked}`;
+            document.getElementById("hmtitle").innerHTML = `Booked!`;
+            document.getElementById("hmbody").innerHTML =  `${dealmsg}<br>There are ${this.rooms - this.booked} rooms remaining.`;
+            hmodal.show();
+        }
+    }
+
+    cancelRoom = () => {
+        if(hclicked > 0) {
+            hclicked--;
+            this.booked--;
+            btns();
+            document.getElementById("sbooked").innerHTML = `${this.booked}`;
+            document.getElementById("hmtitle").innerHTML = `Canceled!`;
+            document.getElementById("hmbody").innerHTML = `There are ${this.rooms - this.booked} rooms remaining.`;
+            hmodal.show();
+        }
+    }
 }
 
 class Resort extends Hotel {
     constructor(name, city, rooms, booked, gym, resortType, beachFront, kidsClub){
-        super();
+        super(name, city, rooms, booked, gym);
         this.resortType = resortType;
         this.beachFront = beachFront;
         this.kidsClub = kidsClub;
@@ -79,6 +103,30 @@ class Resort extends Hotel {
     set kc(resortType) {
         this.resortType = resortType;
     }
+
+     bookRoom = () => {
+        if(this.booked < this.rooms) {
+            rclicked++;
+            this.booked++;
+            btns();
+            document.getElementById("rsbooked").innerHTML = `${this.booked}`;
+            document.getElementById("hmtitle").innerHTML = `Booked!`;
+            document.getElementById("hmbody").innerHTML = `${dealmsg}<br>There are ${this.rooms - this.booked} rooms remaining.`;
+            hmodal.show();
+        }
+    }
+
+    cancelRoom = () => {
+        if(rclicked > 0) {
+            rclicked--;
+            this.booked--;
+            btns();
+            document.getElementById("rsbooked").innerHTML = `${this.booked}`;
+            document.getElementById("hmtitle").innerHTML = `Canceled!`;
+            document.getElementById("hmbody").innerHTML = `There are ${this.rooms - this.booked} rooms remaining.`;
+            hmodal.show();
+        }
+    }
 }
 
 
@@ -88,7 +136,7 @@ hotel.swimmingPool = true;
 hotel.airportShuttle = false;
 hotel.restaurants = new Map([ ["Harolds", "American"],  ["Kyoto", "Japanese"], ["Relax", "Fusion"] ]);
 
-const resort = new Resort("Isla Palma Eco Resort", "Isla Palma", 9, 6,true, "Family", true, true);
+const resort = new Resort("El Paraiso Complejo", "Isla Palma", 9, 6, true, "Family", true, true);
 
 const features = (bool) => {
     if(bool){
@@ -112,52 +160,54 @@ const dRest = (index, val) => {
     }
 }
 
-let clicked = 0;
+let hclicked = 0;
+let rclicked = 0;
 const hmodal = new bootstrap.Modal(document.getElementById("hmodal"));
 
 const btns = () => {
+
+    const hbook = document.getElementById("hbookbtn");
+    const hcancel = document.getElementById("hcancelbtn");
+    const rbook = document.getElementById("rbookbtn");
+    const rcancel = document.getElementById("rcancelbtn");
+
     if (hotel.booked === hotel.rooms) {
-        document.getElementById("bookbtn").disabled = true;
+        hbook.disabled = true;
     } else {
-        document.getElementById("bookbtn").disabled = false;
+        hbook.disabled = false;
     }
 
-    if (clicked === 0) {
-        document.getElementById("cancelbtn").disabled = true;
+    if (hclicked === 0) {
+        hcancel.disabled = true;
     } else {
-        document.getElementById("cancelbtn").disabled = false;
+        hcancel.disabled = false;
     }
+
+    if (resort.booked === resort.rooms) {
+        rbook.disabled = true;
+    } else {
+        rbook.disabled = false;
+    }
+
+    if (rclicked === 0) {
+        rcancel.disabled = true;
+    } else {
+        rcancel.disabled = false;
+    }
+
 }
+
+let deal = false;
+let dealmsg = "";
 
 
 $(document).ready(function() {
 
-    const bookRoom = () => {
-        if(hotel.booked < hotel.rooms) {
-            clicked++;
-            hotel.booked++;
-            btns();
-            $("#sbooked").text(`${hotel.booked}`);
-            $("#hmtitle").html(`Booked!`);
-            $("#hmbody").html(`There are ${hotel.rooms - hotel.booked} rooms remaining.`);
-            hmodal.show();
-        }
-    }
+    $("#hbookbtn").click(hotel.bookRoom);
+    $("#hcancelbtn").click(hotel.cancelRoom);
 
-    const cancelRoom = () => {
-        if(clicked > 0) {
-            clicked--;
-            hotel.booked--;
-            btns();
-            $("#sbooked").text(`${hotel.booked}`);
-            $("#hmtitle").html(`Canceled!`);
-            $("#hmbody").html(`There are ${hotel.rooms - hotel.booked} rooms remaining.`);
-            hmodal.show();
-        }
-    }
-
-    $("#hbookbtn").click(bookRoom);
-    $("#hcancelbtn").click(cancelRoom);
+    $("#rbookbtn").click(resort.bookRoom);
+    $("#rcancelbtn").click(resort.cancelRoom);
 
     $("#hbody").html(`
         <h1 class="card-title">${hotel.name}</h1>
@@ -182,5 +232,49 @@ $(document).ready(function() {
 
     $("#hrooms").html(`There are <span id="sbooked">${hotel.booked}</span> / ${hotel.rooms} rooms booked.`);
 
+    
+    $("#rbody").html(`
+        <h1 class="card-title">Isla Palma Eco Resort</h1><br>
+        <h5 class="card-subtitle text-decoration-underline">Resort Info</h5><br>
+        <p class="card-text"><b>${resort.name}</b>, is a <b>${resort.resortType}</b> resort, located in <b>${resort.city}.</b></p>
+        <p class="card-text">The resort <b>${features(resort.beachFront).toLowerCase()}</b> have a beachfront, and <b>${features(resort.kidsClub).toLowerCase()}</b> feaure a kids club.</p>
+        <br>
+    `);
 
+    $("#rrooms").html(`There are <span id="rsbooked">${resort.booked}</span> / ${resort.rooms} rooms booked.`);
+
+    $("#hotelbtn").click(function() {
+        $("#hcard").show();
+        $("#rcard").hide();
+    });
+
+    $("#resortbtn").click(function() {
+        $("#hcard").hide();
+        $("#rcard").show();
+    });
+
+    let clicked = false;
+    //if state in book button that checks if deal is active and clears interval, p to "deal redeemed" and disables btn
+    $("#dealbtn").click(function() {
+        if(!clicked){
+            let time = 11;
+            deal = true;
+            dealmsg = "Free breakfast deal added!";
+            clicked = true;
+            const dealTimer = setInterval(() => {
+                time--;
+                $("#dealp").html(`Offer expires in <b>${time}</b> seconds!`)
+
+                if(time === 0){
+                    deal = false;
+                    dealmsg = "";
+                    clearInterval(dealTimer);
+                    $("#dealp").html(`Offer expired!`);
+                    deal = false;
+                    dealmsg = "";
+                    $("#dealbtn").prop("disabled", true);
+                }
+            }, 1000 );
+        }
+    });
 });

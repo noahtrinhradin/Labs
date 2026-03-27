@@ -72,9 +72,12 @@
     </div>
 </nav>
 
-<div class="container-fluid mt-5 p-5 d-flex justify-content-center align-items-center">
-    <div>
-        <div class="card text-center">
+<div class="container-fluid p-5 d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex w-100 flex-column align-items-end">
+        <button type="button" class="btn btn-dark mb-3" id="dealbtn">Start a deal?</button>
+        <p id="dealp"></p>
+    </div>
+        <div class="card text-center" id="hcard" style="width:750px; height: 600px;">
             <div class="card-header text-start">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
@@ -94,7 +97,7 @@
             <div class="card-footer text-body-secondary">End of Excercise 1</div>
         </div>
 
-        <div class="card text-center">
+        <div class="card text-center" id="rcard" style="display:none; width:750px; height: 600px;">
             <div class="card-header text-start">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
@@ -105,9 +108,9 @@
                     </li>
                 </ul>
             </div>
-            <div class="card-body">
+            <div class="card-body p-5">
                 <div id="rbody"></div>
-                <p class="card-text text-success" id="rrooms"></p>
+                <p class="card-text text-success mt-5" id="rrooms"></p>
                 <button type="button" class="btn btn-primary m-2" id="rbookbtn">Book Now!</button>
                 <button type="button" class="btn btn-danger m-2" id="rcancelbtn" disabled>Cancel Room?</button>
             </div>
