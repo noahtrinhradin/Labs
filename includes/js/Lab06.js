@@ -52,7 +52,7 @@ class Hotel {
             hclicked++;
             this.booked++;
             btns();
-            document.getElementById("sbooked").innerHTML = `${this.booked}`;
+            $('#sbooked').html (`${this.booked}`);
             document.getElementById("hmtitle").innerHTML = `Booked!`;
             document.getElementById("hmbody").innerHTML =  `${dealmsg}<br>There are ${this.rooms - this.booked} rooms remaining.`;
             hmodal.show();
@@ -89,19 +89,19 @@ class Resort extends Hotel {
     }
 
     get bf() {
-        return this.resortType;
+        return this.beachFront;
     }
 
-    set bf(resortType) {
-        this.resortType = resortType;
+    set bf(beachFront) {
+        this.beachFront = beachFront;
     }
 
     get kc() {
-        return this.resortType;
+        return this.kidsClub;
     }
 
-    set kc(resortType) {
-        this.resortType = resortType;
+    set kc(kidsClub) {
+        this.kidsClub = this.kidsClub;
     }
 
      bookRoom = () => {
@@ -200,7 +200,6 @@ const btns = () => {
 let deal = false;
 let dealmsg = "";
 
-
 $(document).ready(function() {
 
     $("#hbookbtn").click(hotel.bookRoom);
@@ -257,13 +256,14 @@ $(document).ready(function() {
     //if state in book button that checks if deal is active and clears interval, p to "deal redeemed" and disables btn
     $("#dealbtn").click(function() {
         if(!clicked){
-            let time = 11;
+            let time = 10;
             deal = true;
             dealmsg = "Free breakfast deal added!";
             clicked = true;
+            $("#dealp").html(`Offer expires in <b>${time}</b> seconds!`)
             const dealTimer = setInterval(() => {
                 time--;
-                $("#dealp").html(`Offer expires in <b>${time}</b> seconds!`)
+                $("#dealp").html(`Offer expires in <b>${time}</b> seconds!`);
 
                 if(time === 0){
                     deal = false;
